@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>Leap Year Detection</title>
+  </head>
+
+  <script>
+    function isLeapYear() {
+      // Rule:
+      // 1. 西元年份除以4不可整除，為平年。
+      // 2. 西元年份除以4可整除，且除以100不可整除，為閏年。
+      // 3. 西元年份除以100可整除，且除以400不可整除，為平年
+      // 4. 西元年份除以400可整除，為閏年。
+      var year = parseInt(document.getElementById('year').value) + 1911;
+      var isLeapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+      document.getElementById('result').innerHTML = (isLeapYear) ? "Yes" : "No";
+    }
+  </script>
+
+  <body>
+    <b>Is x leap year?</b><br><br>
+    Year: <input type=text id="year"><br>
+    <button onclick="isLeapYear();">Is Leap Year?</button>
+
+    <br><br>
+    Result:
+    <p id="result"></p>
+  </body>
+</html>
+

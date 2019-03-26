@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Blood Pressure</title>
+    <meta charset="UTF-8"> 
+  </head>
+
+  <script>
+    function analyze() {
+      var p1 = document.getElementById('pressure1').value;
+      var p2 = document.getElementById('pressure2').value;
+      var result = "";
+
+      if (p1 >= 180 || p2 >= 110) {
+        result = "第三期高血壓";
+      } else if ((p1 >= 160 && p1 <= 179) || (p2 >= 100 && p2 <= 109)) {
+        result = "第二期高血壓";
+      } else if ((p1 >= 140 && p1 <= 159) || (p2 >= 90 && p2 <= 99)) {
+        result = "第一期高血壓";
+      } else if ((p1 >= 120 && p1 <= 139) || (p2 >= 80 && p2 <= 89)) {
+        result = "高血壓前期";
+      } else {
+        result = "正常";
+      }
+
+      document.getElementById('result').innerHTML = result;
+    }
+  </script>
+
+  <body>
+    <b>Blood Pressure</b><br><br>
+    收縮壓 (mmHg): <input type=text id="pressure1"><br>
+    舒張壓 (mmHg): <input type=text id="pressure2"><br><br>
+    <button onclick="analyze();">Analyze</button>
+
+    <br><br>
+    Result: 
+    <p id="result"></p>
+  </body>
+</html>

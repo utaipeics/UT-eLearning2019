@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <title>C++ Programming Quiz</title>
+  </head>
+
+  <script>
+    var score = 0;
+
+    function markAsFinished(questionId, isCorrect) {
+      // Disable the buttons associated with the specified question.
+      document.getElementById("yes_" + questionId).disabled = true;
+      document.getElementById("no_" + questionId).disabled = true;
+
+      // Update score if the answer is correct.
+      // Also display the corresponding image.
+      if (isCorrect) {
+        document.getElementById("score").innerHTML = ++score;
+        document.getElementById("image").innerHTML = "<img src=correct.png width=80 height=80>";
+      } else {
+        document.getElementById("image").innerHTML = "<img src=wrong.png width=80 height=80>";
+      }
+    }
+  </script>
+
+  <body>
+    <b>C++ Quiz</b><br><br>
+
+    1. In C++, you can pass function parameters by value, pointer and reference.<br>
+    <button id="yes_1" onclick="alert('Correct~'); markAsFinished(1, true);">O</button>
+    <button id="no_1" onclick="alert('Incorrect~'); markAsFinished(1, false);">X</button>
+    <br><br>
+
+    2. C++ is an object-oriented programming language.<br>
+    <button id="yes_2" onclick="alert('Correct~'); markAsFinished(2, true);">O</button>
+    <button id="no_2" onclick="alert('Incorrect~'); markAsFinished(2, false);">X</button>
+    <br><br>
+
+    3. Linux kernel is developed in C++ <br>
+    <button id="yes_3" onclick="alert('Incorrect~'); markAsFinished(3, false);">O</button>
+    <button id="no_3" onclick="alert('Correct~'); markAsFinished(3, true);">X</button>
+    <br><br>
+
+    4. You can use & to get the address of a variable/object/pointer.<br>
+    <button id="yes_4" onclick="alert('Correct~'); markAsFinished(4, true);">O</button>
+    <button id="no_4" onclick="alert('Incorrect~'); markAsFinished(4, false);">X</button>
+    <br><br>
+
+    5. In C++, invoking a static method of a class requires instantiation.<br>
+    <button id="yes_5" onclick="alert('Incorrect~'); markAsFinished(5, false);">O</button>
+    <button id="no_5" onclick="alert('Correct~'); markAsFinished(5, true);">X</button>
+    <br><br>
+
+    Total Score: 
+    <p id="score"></p>
+    <p id="image"></p>
+  </body>
+</html>
