@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title>英文單字測驗</title>
+    <meta charset="UTF-8">
+  </head>
+
+  <script>
+    var question_img = [
+      'animal/bird.jpg',
+      'animal/cat.jpg',
+      'animal/dog.png',
+      'animal/fish.jpg',
+      'animal/rabbit.jpg'
+    ]
+    var answer = ['bird', 'cat', 'dog', 'fish', 'rabbit']
+
+    var current = 0; // current question
+    var score = 0; // user score
+    var improvementVocabs = "";
+
+
+    function checkAnswer() {
+      if (document.getElementById('input').value == answer[current]) {
+        document.getElementById('message').innerHTML = '<img src="correct.png" width=80 height=80>';
+        score += 100 / answer.length;
+      } else {
+        document.getElementById('message').innerHTML = '<img src="wrong.png" width=80 height=80>';
+        improvementVocabs += answer[current] + '\n';
+      }
+
+      current++;
+      update();
+      
+      if (current == answer.length) {
+        document.getElementById('question_id').innerHTML = answer.length;
+        document.getElementById('question_img').innerHTML = '';
+        document.getElementById('message').innerHTML = '全部寫完囉!';
+        document.getElementById('submit').disabled = true;
+      }
+    }
+
+    function update() {
+      document.getElementById('input').value = '';
+      document.getElementById('question_id').innerHTML = parseInt(current) + 1;
+      document.getElementById('question_img').innerHTML = '<img src="' + question_img[current] + '" width=80 height=80>';
+      document.getElementById('score').innerHTML = score;
+      document.getElementById('improvement').innerHTML = improvementVocabs;
+    }
+  </script>
+
+  <body>
+    <b>英文單字測驗</b><br><br>
+
+    Question <span id="question_id"></span><br><br>
+    <span id="question_img"></span><br><br>
+    
+    <input type=text id="input"></input>
+    <button onclick="checkAnswer();" id="submit">Submit</button>
+    
+    <p id="message"></p>
+    Score: <span id="score"></span>
+    <br><br>
+
+    以下單字答錯，請加強：
+    <p id="improvement"></p>
+  </body>
+
+  <script>
+    // Initialization
+    update();
+  </script>
+</html>
