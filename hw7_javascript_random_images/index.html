@@ -1,0 +1,77 @@
+<html>
+  <head>
+
+  </head>
+
+  <script>
+    var pics = ['1.jpg', '2.jpg', '3.png', '4.jpg'];
+    var rand = [];
+    var current = 0;
+    var timerID = 0;
+
+    function showOriginalPics() {
+      var content = '<table border=1><tr>';
+      for (var i = 0; i < pics.length; i++) {
+        content += '<td><img src="' + pics[i] + '" width=200 height=200"></td>'
+      }
+      content += '</tr></table>';
+      document.getElementById('original').innerHTML = content;
+    }
+
+    function showRandomPics() {
+      var content = '<table border=1><tr>';
+
+      rand = [];
+      var appeared = [false, false, false, false];
+      var count = 0;
+      while (count < 4) {
+        var i = Math.floor(Math.random() * 4) + 0;
+        if (appeared[i] == false) {
+          count++;
+          appeared[i] = true;
+          rand.push(i);
+          content += '<td><img src="' + pics[i] + '" width=200 height=200"></td>';
+        }
+      }
+      content += '</tr></table>';
+      document.getElementById('random').innerHTML = content;
+    }
+
+    function play() {
+      timerID = setInterval(function() {
+        if (current == pics.length) {
+          current = 0;
+          // Re-randomize images
+          showRandomPics();
+        }
+
+        document.getElementById('animation').innerHTML = '<img src="' + pics[rand[current]] + '" width=200 height=200>';
+        current++;
+      }, 500);
+    }
+
+    function stop() {
+      clearInterval(timerID);
+    }
+
+    function main() {
+      showOriginalPics();
+      showRandomPics();
+      play();
+    }
+  </script>
+
+  <body>
+    <span id="animation"></span><br><br>
+    Original:<br>
+    <span id="original"></span><br><br>
+    Randomized:<br>
+    <span id="random"></span><br><br>
+    <button onclick="play();" id="play_btn">Play</button>
+    <button onclick="stop();" id="stop_btn">Stop</button>
+  </body>
+
+  <script>
+    main();
+  </script>
+</html>
