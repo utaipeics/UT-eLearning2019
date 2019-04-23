@@ -1,0 +1,65 @@
+<html>
+  <head>
+  </head>
+
+  <script>
+    function sum(array) {
+      var sum = 0;
+      for (var i = 0; i < array.length; i++) {
+        sum += array[i];
+      }
+      return sum;
+    }
+
+    function squareSum(array) {
+      var sum = 0;
+      for (var i = 0; i < array.length; i++) {
+        sum += (array[i] * array[i]);
+      }
+      return sum;
+    }
+
+    function tTest() {
+      var numsA = document.getElementById('numsA').value.split(',').map(Number);
+      var numsB = document.getElementById('numsB').value.split(',').map(Number);
+
+      // 1. Sum and square two number sequences
+      var sumA = sum(numsA);
+      var sumB = sum(numsB);
+
+      // 2. Square the sums from step 1
+      var sumSquareA = sumA * sumA;
+      var sumSquareB = sumB * sumB;
+
+      // 3. Calculate the means for two groups
+      var meanA = sumA / numsA.length;
+      var meanB = sumB / numsB.length;
+
+      // 4. Square individual element and sum
+      var squaredSumA = squareSum(numsA);
+      var squaredSumB = squareSum(numsB);
+
+      var nA = numsA.length;
+      var nB = numsB.length;
+
+      var result = (meanA - meanB) / Math.sqrt((((squaredSumA - (sumSquareA / nA)) + (squaredSumB - (sumSquareB / nB))) / (nA + nB - 2)) * ((1 / nA) + (1 / nB)));
+      document.getElementById('result').innerHTML = result;
+    }
+
+    function clearInput() {
+      document.getElementById('numsA').value = '';
+      document.getElementById('numsB').value = '';
+    }
+  </script>
+
+  <body>
+    Independent T Test (U10516045)<br><br>
+    A: <input type="text" id="numsA"></input>
+    B: <input type="text" id="numsB"></input>
+    <br><br>
+    <button onclick="tTest();">Calculate</button>
+    <button onclick="clearInput();">Clear</button>
+    <br><br>
+    <span id="result"></span>
+  </body>
+</html>
