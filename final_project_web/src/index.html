@@ -15,9 +15,10 @@
     <script src="js/navbar-ontop.js"></script>
     <!-- Script: Animated entrance -->
     <script src="js/animate-in.js"></script>
-    <script> function showAbout() {
-      document.getElementById('msgBoxTitle').innerHTML = "關於";
-      document.getElementById('msgBoxText').innerHTML = "本互動式數位學習網站由臺北市立大學資科系製作";
+    <script>
+      function showAbout() {
+        document.getElementById('msgBoxTitle').innerHTML = "關於";
+        document.getElementById('msgBoxText').innerHTML = "本互動式數位學習網站由臺北市立大學資科系製作";
       }
       
       // Quiz related variables and functions.
@@ -25,143 +26,143 @@
       var score = 0;
       
       var questions = [
-      'Q1. 看完社區單元後，什麼是「社區」？',
-      'Q2. 請閱讀上方小鎮風情一文，請問鹿港美食不含下列哪一項？',
-      'Q3. 鹿港的建築有以下哪一個功能？',
-      'Q4. 以下哪一個景點不在北投？',
-      'Q5. 請問北投的英文是哪一個？',
-      'Q6. 上方曾提及哪一個臉書粉絲專頁？',
-      'Q7. 北投在國際上以_____形容並畫上等號。',
-      'Q8. 北投有哪一個原住民族的文物館？',
-      'Q9. 以下哪一個景點不在北投？',
-      'Q10. 以下哪一個景點不在北投？'
+        'Q1. 看完社區單元後，什麼是「社區」？',
+        'Q2. 請閱讀上方小鎮風情一文，請問鹿港美食不含下列哪一項？',
+        'Q3. 鹿港的建築有以下哪一個功能？',
+        'Q4. 以下哪一個景點不在北投？',
+        'Q5. 請問北投的英文是哪一個？',
+        'Q6. 上方曾提及哪一個臉書粉絲專頁？',
+        'Q7. 北投在國際上以_____形容並畫上等號。',
+        'Q8. 北投有哪一個原住民族的文物館？',
+        'Q9. 以下哪一個景點不在北投？',
+        'Q10. 以下哪一個景點不在北投？'
       ];
       
       var choicesA = [
-      '(A) 居住在同一個地方，而聚集在一起的社會單位',
-      '(A) 牛舌餅',
-      '(A) 防水',
-      '(A) 天狗庵',
-      '(A) Beitou',
-      '(A) 北投車站粉絲專頁',
-      '(A) 國際都市',
-      '(A) 凱達格蘭族',
-      '(A) 瀧乃湯',
-      '(A) 臺北101'
+        '(A) 居住在同一個地方，而聚集在一起的社會單位',
+        '(A) 牛舌餅',
+        '(A) 防水',
+        '(A) 天狗庵',
+        '(A) Beitou',
+        '(A) 北投車站粉絲專頁',
+        '(A) 國際都市',
+        '(A) 凱達格蘭族',
+        '(A) 瀧乃湯',
+        '(A) 臺北101'
       ];
       
       var choicesB = [
-      '(B) 提供娛樂的場所',
-      '(B) 鳳眼糕',
-      '(B) 防盜',
-      '(B) 復興崗',
-      '(B) Nantou',
-      '(B) 北投生活環境博物園區',
-      '(B) 溫泉鄉',
-      '(B) 阿美族',
-      '(B) 普濟寺',
-      '(B) 溫泉博物館'
+        '(B) 提供娛樂的場所',
+        '(B) 鳳眼糕',
+        '(B) 防盜',
+        '(B) 復興崗',
+        '(B) Nantou',
+        '(B) 北投生活環境博物園區',
+        '(B) 溫泉鄉',
+        '(B) 阿美族',
+        '(B) 普濟寺',
+        '(B) 溫泉博物館'
       ];
       
       var choicesC = [
-      '(C) 可以閱讀和購買書籍的地方',
-      '(C) 銅鑼燒',
-      '(C) 防地震',
-      '(C) 臺北車站',
-      '(C) BearTou',
-      '(C) 南港展覽館粉絲專頁',
-      '(C) 文化大熔爐',
-      '(C) 達悟族',
-      '(C) 龍山寺',
-      '(C) 不動明王'
+        '(C) 可以閱讀和購買書籍的地方',
+        '(C) 銅鑼燒',
+        '(C) 防地震',
+        '(C) 臺北車站',
+        '(C) BearTou',
+        '(C) 南港展覽館粉絲專頁',
+        '(C) 文化大熔爐',
+        '(C) 達悟族',
+        '(C) 龍山寺',
+        '(C) 不動明王'
       ];
       
       var hints = [
-      '回想社會課哦！社區是什麼？',
-      '答案在上面其中一篇文章',
-      '答案在上面其中一篇文章',
-      '北投自己就有一個車站了',
-      '網頁最上方有寫哦！',
-      '答案在上面其中一篇文章',
-      '網頁最上方有寫哦！',
-      '網頁最上方有寫哦！',
-      '答案在上面其中一篇文章',
-      '答案在上面其中一篇文章'
+        '回想社會課哦！社區是什麼？',
+        '答案在上面其中一篇文章',
+        '答案在上面其中一篇文章',
+        '北投自己就有一個車站了',
+        '網頁最上方有寫哦！',
+        '答案在上面其中一篇文章',
+        '網頁最上方有寫哦！',
+        '網頁最上方有寫哦！',
+        '答案在上面其中一篇文章',
+        '答案在上面其中一篇文章'
       ];
       
       var answers = [
-      'A',
-      'C',
-      'B',
-      'C',
-      'A',
-      'B',
-      'B',
-      'A',
-      'C',
-      'A'
+        'A',
+        'C',
+        'B',
+        'C',
+        'A',
+        'B',
+        'B',
+        'A',
+        'C',
+        'A'
       ];
       
       var wrongHistory = [];
       
       function showNextQuestion() {
-      current++;
-      if (current >= questions.length) {
-        // Show learning suggestions.
-        document.getElementById('question').innerHTML = "測驗完成囉！ 剛才答錯了" + wrongHistory.length + "題：";
-        document.getElementById('questionImg').innerHTML = '';
-        var s = '';
-        for (var i = 0; i < wrongHistory.length; i++) {
-          var questionIdx = wrongHistory[i];
-          var choice = answers[questionIdx];
-          s += '[' + questionIdx + '] Q: ' + questions[questionIdx] + ', Ans: ';
-          switch (choice) {
-            case 'A':
-              s += choicesA[questionIdx];
-              break;
-            case 'B':
-              s += choicesB[questionIdx];
-              break;
-            case 'C':
-              s += choicesC[questionIdx];
-              break;
-            default:
-              break;
+        current++;
+        if (current >= questions.length) {
+          // Show learning suggestions.
+          document.getElementById('question').innerHTML = "測驗完成囉！ 剛才答錯了" + wrongHistory.length + "題：";
+          document.getElementById('questionImg').innerHTML = '';
+          var s = '';
+          for (var i = 0; i < wrongHistory.length; i++) {
+            var questionIdx = wrongHistory[i];
+            var choice = answers[questionIdx];
+            s += '[' + questionIdx + '] Q: ' + questions[questionIdx] + ', Ans: ';
+            switch (choice) {
+              case 'A':
+                s += choicesA[questionIdx];
+                break;
+              case 'B':
+                s += choicesB[questionIdx];
+                break;
+              case 'C':
+                s += choicesC[questionIdx];
+                break;
+              default:
+                break;
+            }
+            s += '<br>';
           }
-          s += '<br>';
+          document.getElementById('answerArea').innerHTML = s;
+          document.getElementById('hint').innerHTML = '';
+        } else {
+          document.getElementById('question').innerHTML = questions[current];
+          document.getElementById('questionImg').innerHTML = '<img width=600 height=300 src="assets/q' + (current + 1) + '.jpg">';
+          document.getElementById('choiceAText').innerHTML = choicesA[current];
+          document.getElementById('choiceBText').innerHTML = choicesB[current];
+          document.getElementById('choiceCText').innerHTML = choicesC[current];
         }
-        document.getElementById('answerArea').innerHTML = s;
-        document.getElementById('hint').innerHTML = '';
-      } else {
-        document.getElementById('question').innerHTML = questions[current];
-        document.getElementById('questionImg').innerHTML = '<img width=600 height=300 src="assets/q' + (current + 1) + '.jpg">';
-        document.getElementById('choiceAText').innerHTML = choicesA[current];
-        document.getElementById('choiceBText').innerHTML = choicesB[current];
-        document.getElementById('choiceCText').innerHTML = choicesC[current];
-      }
       }
       
       function showHint(questionId) {
-      document.getElementById('msgBoxTitle').innerHTML = "提示";
-      document.getElementById('msgBoxText').innerHTML = hints[current];
+        document.getElementById('msgBoxTitle').innerHTML = "提示";
+        document.getElementById('msgBoxText').innerHTML = hints[current];
       }
       
       function checkAnswer() {
-      var radioBtns = document.getElementsByName('answer');
-      for (var i = 0; i < radioBtns.length; i++) {
-        var btn = radioBtns[i];
-        if (btn.checked) {
-          if (btn.value == answers[current]) {
-            score += 10;
-            document.getElementById('score').innerHTML = score;
-            document.getElementById('hint').innerHTML = '正確！';
-          } else {
-            wrongHistory.push(current);
-            document.getElementById('hint').innerHTML = '答錯了！';
+        var radioBtns = document.getElementsByName('answer');
+        for (var i = 0; i < radioBtns.length; i++) {
+          var btn = radioBtns[i];
+          if (btn.checked) {
+            if (btn.value == answers[current]) {
+              score += 10;
+              document.getElementById('score').innerHTML = score;
+              document.getElementById('hint').innerHTML = '正確！';
+            } else {
+              wrongHistory.push(current);
+              document.getElementById('hint').innerHTML = '答錯了！';
+            }
           }
         }
-      }
-      showNextQuestion();
+        showNextQuestion();
       }
     </script>
   </head>
