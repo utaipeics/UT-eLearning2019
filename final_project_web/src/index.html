@@ -1,293 +1,376 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- PAGE settings -->
-  <link rel="icon" href="https://templates.pingendo.com/assets/Pingendo_favicon.ico">
-  <title>義方國小 :: 認識北投</title>
-  <meta name="description" content="Free Bootstrap 4 Pingendo Aquamarine template for restaurant and food">
-  <meta name="keywords" content="Pingendo restaurant food aquamarine free template bootstrap 4">
-  <!-- CSS dependencies -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="aquamarine.css" type="text/css">
-  <!-- Script: Make my navbar transparent when the document is scrolled to top -->
-  <script src="js/navbar-ontop.js"></script>
-  <!-- Script: Animated entrance -->
-  <script src="js/animate-in.js"></script>
-  <script> function showHint(questionId) {
-    switch (questionId) {
-      case 1:
-        document.getElementById('hint1').innerHTML = "社區的概念是什麼？請回想課程";
-        break;
-      case 2:
-        document.getElementById('hint2').innerHTML = "可以到臉書「相簿」裏面看看有沒有自己喜歡的景點哦！";
-        break;
-      case 3:
-        document.getElementById('hint3').innerHTML = "錄好影片後上傳到Youtube或Google Drive，開分享後貼上連結";
-        break;
-      case 4:
-        document.getElementById('hint4').innerHTML = "請嘗試寫下任何想法";
-        break;
-      default:
-        break;
-    }
-  }
-</script>
-</head>
-
-<body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- PAGE settings -->
+    <link rel="icon" href="https://templates.pingendo.com/assets/Pingendo_favicon.ico">
+    <title>義方國小 :: 認識北投</title>
+    <meta name="description" content="Free Bootstrap 4 Pingendo Aquamarine template for restaurant and food">
+    <meta name="keywords" content="Pingendo restaurant food aquamarine free template bootstrap 4">
+    <!-- CSS dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="aquamarine.css" type="text/css">
+    <!-- Script: Make my navbar transparent when the document is scrolled to top -->
+    <script src="js/navbar-ontop.js"></script>
+    <!-- Script: Animated entrance -->
+    <script src="js/animate-in.js"></script>
+    <script> function showAbout() {
+      document.getElementById('msgBoxTitle').innerHTML = "關於";
+      document.getElementById('msgBoxText').innerHTML = "本互動式數位學習網站由臺北市立大學資科系製作";
+      }
+      
+      // Quiz related variables and functions.
+      var current = -1;
+      var score = 0;
+      
+      var questions = [
+      'Q1. 看完社區單元後，什麼是「社區」？',
+      'Q2. 請閱讀上方小鎮風情一文，請問鹿港美食不含下列哪一項？',
+      'Q3. 鹿港的建築有以下哪一個功能？',
+      'Q4. 以下哪一個景點不在北投？',
+      'Q5. 請問北投的英文是哪一個？',
+      'Q6. 上方曾提及哪一個臉書粉絲專頁？',
+      'Q7. 北投在國際上以_____形容並畫上等號。',
+      'Q8. 北投有哪一個原住民族的文物館？',
+      'Q9. 以下哪一個景點不在北投？',
+      'Q10. 以下哪一個景點不在北投？'
+      ];
+      
+      var choicesA = [
+      '(A) 居住在同一個地方，而聚集在一起的社會單位',
+      '(A) 牛舌餅',
+      '(A) 防水',
+      '(A) 天狗庵',
+      '(A) Beitou',
+      '(A) 北投車站粉絲專頁',
+      '(A) 國際都市',
+      '(A) 凱達格蘭族',
+      '(A) 瀧乃湯',
+      '(A) 臺北101'
+      ];
+      
+      var choicesB = [
+      '(B) 提供娛樂的場所',
+      '(B) 鳳眼糕',
+      '(B) 防盜',
+      '(B) 復興崗',
+      '(B) Nantou',
+      '(B) 北投生活環境博物園區',
+      '(B) 溫泉鄉',
+      '(B) 阿美族',
+      '(B) 普濟寺',
+      '(B) 溫泉博物館'
+      ];
+      
+      var choicesC = [
+      '(C) 可以閱讀和購買書籍的地方',
+      '(C) 銅鑼燒',
+      '(C) 防地震',
+      '(C) 臺北車站',
+      '(C) BearTou',
+      '(C) 南港展覽館粉絲專頁',
+      '(C) 文化大熔爐',
+      '(C) 達悟族',
+      '(C) 龍山寺',
+      '(C) 不動明王'
+      ];
+      
+      var hints = [
+      '回想社會課哦！社區是什麼？',
+      '答案在上面其中一篇文章',
+      '答案在上面其中一篇文章',
+      '北投自己就有一個車站了',
+      '網頁最上方有寫哦！',
+      '答案在上面其中一篇文章',
+      '網頁最上方有寫哦！',
+      '網頁最上方有寫哦！',
+      '答案在上面其中一篇文章',
+      '答案在上面其中一篇文章'
+      ];
+      
+      var answers = [
+      'A',
+      'C',
+      'B',
+      'C',
+      'A',
+      'B',
+      'B',
+      'A',
+      'C',
+      'A'
+      ];
+      
+      var wrongHistory = [];
+      
+      function showNextQuestion() {
+      current++;
+      if (current >= questions.length) {
+        // Show learning suggestions.
+        document.getElementById('question').innerHTML = "測驗完成囉！ 剛才答錯了" + wrongHistory.length + "題：";
+        document.getElementById('questionImg').innerHTML = '';
+        var s = '';
+        for (var i = 0; i < wrongHistory.length; i++) {
+          var questionIdx = wrongHistory[i];
+          var choice = answers[questionIdx];
+          s += '[' + questionIdx + '] Q: ' + questions[questionIdx] + ', Ans: ';
+          switch (choice) {
+            case 'A':
+              s += choicesA[questionIdx];
+              break;
+            case 'B':
+              s += choicesB[questionIdx];
+              break;
+            case 'C':
+              s += choicesC[questionIdx];
+              break;
+            default:
+              break;
+          }
+          s += '<br>';
+        }
+        document.getElementById('answerArea').innerHTML = s;
+        document.getElementById('hint').innerHTML = '';
+      } else {
+        document.getElementById('question').innerHTML = questions[current];
+        document.getElementById('questionImg').innerHTML = '<img width=600 height=300 src="assets/q' + (current + 1) + '.jpg">';
+        document.getElementById('choiceAText').innerHTML = choicesA[current];
+        document.getElementById('choiceBText').innerHTML = choicesB[current];
+        document.getElementById('choiceCText').innerHTML = choicesC[current];
+      }
+      }
+      
+      function showHint(questionId) {
+      document.getElementById('msgBoxTitle').innerHTML = "提示";
+      document.getElementById('msgBoxText').innerHTML = hints[current];
+      }
+      
+      function checkAnswer() {
+      var radioBtns = document.getElementsByName('answer');
+      for (var i = 0; i < radioBtns.length; i++) {
+        var btn = radioBtns[i];
+        if (btn.checked) {
+          if (btn.value == answers[current]) {
+            score += 10;
+            document.getElementById('score').innerHTML = score;
+            document.getElementById('hint').innerHTML = '正確！';
+          } else {
+            wrongHistory.push(current);
+            document.getElementById('hint').innerHTML = '答錯了！';
+          }
+        }
+      }
+      showNextQuestion();
+      }
+    </script>
+  </head>
+  <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
-        <div class="container">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar3SupportedContent" aria-controls="navbar3SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-            <div class="collapse navbar-collapse text-center justify-content-center" id="navbar3SupportedContent">
-                <ul class="navbar-nav">
-                    <li class="nav-item mx-3">
-                        <a href="#" class="nav-link active" contenteditable="true">首頁</a>
-                    </li>
-                    <li class="nav-item mx-3">
-                        <a href="#" class="nav-link">關於</a>
-                    </li>
-                    <li class="nav-item dropdown text-white">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">頁面導覽</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="index.html">01 - 總覽（首頁）</a>
-                            <a class="dropdown-item" href="02.html">02 - 溫泉博物館</a>
-                            <a class="dropdown-item" href="03.html">03 - 北投圖書館</a>
-                            <a class="dropdown-item" href="04.html">04 - 北投公園</a>
-                            <a class="dropdown-item" href="05.html">05 - 北投車站</a>
-                            <a class="dropdown-item" href="06.html">06 - 北投文物館</a>
-                            <a class="dropdown-item" href="07.html">07 - 天狗庵</a>
-                            <a class="dropdown-item" href="08.html">08 - 瀧乃湯</a>
-                            <a class="dropdown-item" href="09.html">09 - 普濟寺</a>
-                            <a class="dropdown-item" href="10.html">10 - 凱達格蘭館</a>
-                            <a class="dropdown-item" href="11.html">11 - 不動明王</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="record.html">過關記錄卡</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+      <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar3SupportedContent" aria-controls="navbar3SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+        <div class="collapse navbar-collapse text-center justify-content-center" id="navbar3SupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item mx-3">
+              <a href="#" class="nav-link active" contenteditable="true">首頁</a>
+            </li>
+            <li class="nav-item mx-3">
+              <a href="#" class="nav-link" data-toggle="modal" onclick="showAbout();" data-target="#modal">關於</a>
+            </li>
+            <li class="nav-item dropdown text-white">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">頁面導覽</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="index.html">01 - 總覽（本頁）</a><a class="dropdown-item" href="02.html">02 - 溫泉博物館</a>
+                <a class="dropdown-item" href="03.html">03 - 北投圖書館</a>
+                <a class="dropdown-item" href="04.html">04 - 北投公園</a><a class="dropdown-item" href="05.html">05 - 北投車站</a><a class="dropdown-item" href="06.html">06 - 北投文物館</a><a class="dropdown-item" href="07.html">07 - 天狗庵</a><a class="dropdown-item" href="08.html">08 - 瀧乃湯</a><a class="dropdown-item" href="09.html">09 - 普濟寺</a><a class="dropdown-item" href="10.html">10 - 凱達格蘭館</a><a class="dropdown-item" href="11.html">11 - 不動明王</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="record.html">過關記錄卡</a>
+              </div>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
     <div class=""></div>
     <!-- Cover -->
     <!-- Intro -->
     <!-- Gallery -->
     <div class="py-5 text-white w-100" style="background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(&quot;assets/index_cover.jpg&quot;); background-position: center center, center center; background-size: cover, cover; background-repeat: repeat, repeat;">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 p-0">
-                    <div class="embed-responsive embed-responsive-16by9 pt-5 mt-5">
-                        <iframe src="https://www.youtube.com/embed/DAVEKRO-lyk" allowfullscreen="" class="embed-responsive-item"></iframe>
-                    </div>
-                </div>
-                <div class="p-5 col-lg-7 d-flex flex-column justify-content-center">
-                    <h3 class="display-4 mb-3">北投 Beitou</h3>
-                    <p class="lead mb-0">北投，國際上以溫泉鄉形容並畫上等號，代表的正是北投文化資產維護的落實
-                        <br>
-                        <br>到北投一覽，不僅可以享受北投溫泉的心靈之旅，更可以到鄰近北投公園內的北投溫泉博物館，去窺視北投溫泉發展的風貌、凱達格蘭文物館去了解早期北投先民生活的方式</p>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 p-0">
+            <div class="embed-responsive embed-responsive-16by9 pt-5 mt-5">
+              <iframe src="https://www.youtube.com/embed/DAVEKRO-lyk" allowfullscreen="" class="embed-responsive-item"></iframe>
             </div>
+          </div>
+          <div class="p-5 col-lg-7 d-flex flex-column justify-content-center">
+            <h3 class="display-4 mb-3">北投 Beitou</h3>
+            <p class="lead mb-0">北投，國際上以溫泉鄉形容並畫上等號，代表的正是北投文化資產維護的落實<br><br>到北投一覽，不僅可以享受北投溫泉的心靈之旅，更可以到鄰近北投公園內的北投溫泉博物館，去窺視北投溫泉發展的風貌、凱達格蘭文物館去了解早期北投先民生活的方式</p>
+          </div>
         </div>
+      </div>
+    </div>
+    <div class="modal fade" id="modal" aria-hidden="true" aria-labelledby="exampleModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="msgBoxTitle">message title</h5>
+            <button type="button" class="close" data-dismiss="modal"> <span>×</span> </button>
+          </div>
+          <div class="modal-body">
+            <p id="msgBoxText">message body</p>
+          </div>
+          <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button> </div>
+        </div>
+      </div>
     </div>
     <div class="">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="breadcrumb px-5 pt-5 pb-2"> 您的位置：
-                        <li class="breadcrumb-item">
-                            <a href="#">認識北投</a> </li>
-                        <li class="breadcrumb-item active">總覽（首頁）</li>
-                        <!-- <li class="breadcrumb-item active">北投車站</li> -->
-                    </ul>
-                    <div class="card mx-4">
-                        <div class="card-header bg-info" contenteditable="true">課文閱讀</div>
-                        <div class="card-body mx-3" style="">
-                            <blockquote class="blockquote mb-0"></blockquote>
-                            <div class="row">
-                                <div class="col-md-3" style="">
-                                    <div class="col-3 col-md-12 py-3 pb-5" style="">
-                                        <ul class="nav nav-pills flex-column">
-                                            <li class="nav-item" style=""> <a href="" class="nav-link active show" data-toggle="pill" data-target="#tab1">探索北投</a> </li>
-                                            <li class="nav-item"> <a href="" class="nav-link" data-toggle="pill" data-target="#tab2">認識居住的地方</a> </li>
-                                            <li class="nav-item"> <a class="nav-link" href="" data-toggle="pill" data-target="#tab3">小鎮風情</a> </li>
-                                            <li class="nav-item" style=""> <a href="" class="nav-link" data-toggle="pill" data-target="#tab4">回到鹿港</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-8" style="">
-                                    <div class="col-9 col-md-12 py-3 pb-2" style="">
-                                        <div class="tab-content">
-                                            <div class="tab-pane fade px-2" id="tab2" role="tabpanel">
-                                                <h1 class="" contenteditable="true">鄉村與都市的差異比較：<br></h1>
-                                                <div class="table-responsive">
-                                                    <table class="table table-striped table-borderless">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">鄉 村</th>
-                                                                <th scope="col">都 市</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th scope="row">建築</th>
-                                                                <td>平房、磚瓦</td>
-                                                                <td>大樓、鋼筋水泥</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">馬路</th>
-                                                                <td>小路、泥土路 </td>
-                                                                <td>寬廣密布道路、柏油路</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">商店種類</th>
-                                                                <td>少、單純</td>
-                                                                <td>多、多元</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">職業 </th>
-                                                                <td>農耕、捕魚</td>
-                                                                <td>上班族</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">生活步調</th>
-                                                                <td>慢</td>
-                                                                <td>快</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">人</th>
-                                                                <td>少、常碰面</td>
-                                                                <td>多、少往來</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">關係</th>
-                                                                <td>良好</td>
-                                                                <td>疏遠</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade px-2" id="tab3" role="tabpanel">
-                                                <h1 class="">小鎮風情</h1>鹿港鎮，在彰化，臺灣史上名氣大。&nbsp;
-                                                <br>先民冒險過黑水，聚落成鎮傳佳話。
-                                                <br>
-                                                <br>龍山寺，天后宮，雕刻精美唐山工。
-                                                <br>敬神禮佛遊客多，拜完媽祖拜關公。
-                                                <br>
-                                                <br>九曲巷，走迷宮，方磚古道滿地紅。
-                                                <br>十宜樓上看風景，品茶望月對清風。
-                                                <br>
-                                                <br>牛舌餅，鳳眼糕，大街小巷香味飄。
-                                                <br>如果想吃古早味，請來鹿港走一遭。
-                                            </div>
-                                            <div class="tab-pane fade px-2" id="tab4" role="tabpanel">
-                                                <h1 class="">回到鹿港</h1>我們的老家在鹿港，那裡的建築古色古香。每次回老家，我們都會到處逛一逛。&nbsp;&nbsp;
-                                                <br>
-                                                <br>冬天，鹿港的風很大，九曲巷彎彎曲曲的，風一點也吹不進來，很溫暖。走在巷子裡，好像在玩捉迷藏一樣，一不留神，爸爸、媽媽就不見了。爸爸說，鹿港從前是一個商港，常有海盜出沒。媽媽也告訴我們，九曲巷除了防風以外，還可以防盜。你看！彎曲的巷子好像迷宮一樣，聽說不少海盜還真的曾經在裡面「迷路」呢！&nbsp;
-                                                <br>
-                                                <br>逛完了九曲巷，我們再去參觀那口著名的「半邊井」。紅磚砌成的半邊井，一半在牆內，一半在牆外，好奇怪呵！奶奶說，由於鹿港人很有人情味，所以有些人把井挖在牆腳下，讓沒錢挖井的人，也能來打水喝。奶奶還說，她就是喝這一口井水長大的，我聽了很感動。&nbsp;
-                                                <br>
-                                                <br>我喜歡回鹿港，因為那個地方，不但好玩，還很有人情味。
-                                            </div>
-                                            <div class="tab-pane fade px-2 active show" id="tab1" role="tabpanel">
-                                                <h1 class="">探索北投</h1>
-                                                <a href="https://www.facebook.com/beitou2020">北投生活環境博物園區 Facebook 粉絲專頁</a>
-                                                <br>
-                                                <br> 可以點選地圖上的景點，進一步認識哦！
-                                                <!-- Image Map Generated by http://www.image-map.net/ -->
-                                                <img src="assets/index_map.jpg" usemap="#image-map" class="py-3">
-                                                <map name="image-map">
-                                                    <area target="" alt="02" title="02" href="02.html" coords="416,210,37" shape="circle">
-                                                    <area target="" alt="03" title="03" href="03.html" coords="341,241,34" shape="circle">
-                                                    <area target="" alt="04" title="04" href="04.html" coords="268,253,30" shape="circle">
-                                                    <area target="" alt="05" title="05" href="05.html" coords="79,235,30" shape="circle">
-                                                    <area target="" alt="06" title="06" href="06.html" coords="627,84,46" shape="circle">
-                                                    <area target="" alt="07" title="07" href="07.html" coords="402,367,46" shape="circle">
-                                                    <area target="" alt="08" title="08" href="08.html" coords="522,359,46" shape="circle">
-                                                    <area target="" alt="09" title="09" href="09.html" coords="737,259,45" shape="circle">
-                                                    <area target="" alt="10" title="10" href="10.html" coords="288,170,45" shape="circle">
-                                                    <area target="" alt="11" title="11" href="11.html" coords="740,72,49" shape="circle">
-                                                </map>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="breadcrumb px-5 pt-5 pb-2">
+              您的位置： 
+              <li class="breadcrumb-item">
+                <a href="#">認識北投</a> 
+              </li>
+              <li class="breadcrumb-item active">總覽（首頁）</li>
+              <!-- <li class="breadcrumb-item active">北投車站</li> -->
+            </ul>
+            <div class="card mx-4">
+              <div class="card-header bg-info" contenteditable="false">課文閱讀</div>
+              <div class="card-body mx-3" style="">
+                <blockquote class="blockquote mb-0"></blockquote>
+                <div class="row">
+                  <div class="col-md-3" style="">
+                    <div class="col-3 col-md-12 py-3 pb-5" style="">
+                      <ul class="nav nav-pills flex-column">
+                        <li class="nav-item" style=""> <a href="" class="nav-link active show" data-toggle="pill" data-target="#tab1">探索北投</a> </li>
+                        <li class="nav-item"> <a href="" class="nav-link" data-toggle="pill" data-target="#tab2">認識居住的地方</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="" data-toggle="pill" data-target="#tab3">小鎮風情</a> </li>
+                        <li class="nav-item" style=""> <a href="" class="nav-link" data-toggle="pill" data-target="#tab4">回到鹿港</a> </li>
+                      </ul>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-            </div>
-            <div class="row">
-                <div class="col-md-12 mt-5 mb-4">
-                    <div class="card mx-4">
-                        <div class="card-header bg-info">學習任務</div>
-                        <div class="card-body mx-3" style="">
-                            <blockquote class="blockquote mb-0"></blockquote>
-                            <div class="row">
-                                <div class="col-md-12" style="">
-                                    <form class="mx-0 p-2">
-                                        <div class="form-group">
-                                            <label>姓名</label>
-                                            <input type="text" placeholder="請輸入姓名" class="form-control">
-                                            <small class="form-text text-muted"></small>
-                                        </div>
-                                        <div class="form-group">
-                                            <label style="">任務一：看完社區單元後，請說明什麼是「社區」？
-                                                <br>
-                                            </label>
-                                            <button type="button" class="btn m-1 btn-info" onclick="showHint(1);">提示</button>
-                                            <br>
-                                            <label style="" class="text-muted" contenteditable="true" id="hint1">
-                                                <br>
-                                            </label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>任務二：請瀏覽「<a href="https://www.facebook.com/beitou2020">北投生活環境博物園區</a>」的臉書後，找出北投生活環境博物園區至少3個重要景點。</label>
-                                            <button type="button" class="btn m-1 btn-info" onclick="showHint(2);">提示</button>
-                                            <br>
-                                            <label style="" class="text-muted" contenteditable="true" id="hint2">
-                                                <br>
-                                            </label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>任務三：看完兩篇介紹「鹿港」的文章後，請與小組夥伴討論並錄下一段介紹北投的影片上傳（貼上連結）。</label>
-                                            <button type="button" class="btn m-1 btn-info" onclick="showHint(3);">提示</button>
-                                            <br>
-                                            <label style="" class="text-muted" contenteditable="true" id="hint3">
-                                                <br>
-                                            </label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>任務四：請選擇一個你最感興趣的主題，說明原因並寫下可以如何更好的創新或改變。</label>
-                                            <button type="button" class="btn m-1 btn-info" onclick="showHint(4);">提示</button>
-                                            <br>
-                                            <label style="" class="text-muted" contenteditable="true" id="hint4">
-                                                <br>
-                                            </label>
-                                            <input type="text" class="form-control"> </div>
-                                        <button type="submit" class="btn btn-primary">送出答案</button>
-                                    </form>
-                                </div>
-                            </div>
+                  </div>
+                  <div class="col-md-8" style="">
+                    <div class="col-9 col-md-12 py-3 pb-2" style="">
+                      <div class="tab-content">
+                        <div class="tab-pane fade px-2 active show" id="tab1" role="tabpanel">
+                          <h1 class="">探索北投</h1>
+                          <a href="https://www.facebook.com/beitou2020">北投生活環境博物園區 Facebook 粉絲專頁</a><br><br> 可以點選地圖上的景點，進一步認識哦！
+                          <!-- Image Map Generated by http://www.image-map.net/ -->
+                          <img src="assets/index_map.jpg" usemap="#image-map" class="py-3">
+                          <map name="image-map">
+                            <area target="" alt="02" title="02" href="02.html" coords="416,210,37" shape="circle">
+                            <area target="" alt="03" title="03" href="03.html" coords="341,241,34" shape="circle">
+                            <area target="" alt="04" title="04" href="04.html" coords="268,253,30" shape="circle">
+                            <area target="" alt="05" title="05" href="05.html" coords="79,235,30" shape="circle">
+                            <area target="" alt="06" title="06" href="06.html" coords="627,84,46" shape="circle">
+                            <area target="" alt="07" title="07" href="07.html" coords="402,367,46" shape="circle">
+                            <area target="" alt="08" title="08" href="08.html" coords="522,359,46" shape="circle">
+                            <area target="" alt="09" title="09" href="09.html" coords="737,259,45" shape="circle">
+                            <area target="" alt="10" title="10" href="10.html" coords="288,170,45" shape="circle">
+                            <area target="" alt="11" title="11" href="11.html" coords="740,72,49" shape="circle">
+                          </map>
                         </div>
+                        <div class="tab-pane fade px-2" id="tab2" role="tabpanel">
+                          <h1 class="" contenteditable="true">鄉村與都市的差異比較：<br></h1>
+                          <div class="table-responsive">
+                            <table class="table table-striped table-borderless">
+                              <thead>
+                                <tr>
+                                  <th scope="col"></th>
+                                  <th scope="col">鄉 村</th>
+                                  <th scope="col">都 市</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">建築</th>
+                                  <td>平房、磚瓦</td>
+                                  <td>大樓、鋼筋水泥</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">馬路</th>
+                                  <td>小路、泥土路 </td>
+                                  <td>寬廣密布道路、柏油路</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">商店種類</th>
+                                  <td>少、單純</td>
+                                  <td>多、多元</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">職業 </th>
+                                  <td>農耕、捕魚</td>
+                                  <td>上班族</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">生活步調</th>
+                                  <td>慢</td>
+                                  <td>快</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">人</th>
+                                  <td>少、常碰面</td>
+                                  <td>多、少往來</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">關係</th>
+                                  <td>良好</td>
+                                  <td>疏遠</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <div class="tab-pane fade px-2" id="tab3" role="tabpanel">
+                          <h1 class="">小鎮風情</h1>
+                          鹿港鎮，在彰化，臺灣史上名氣大。&nbsp;<br>先民冒險過黑水，聚落成鎮傳佳話。<br><br>龍山寺，天后宮，雕刻精美唐山工。<br>敬神禮佛遊客多，拜完媽祖拜關公。<br><br>九曲巷，走迷宮，方磚古道滿地紅。<br>十宜樓上看風景，品茶望月對清風。<br><br>牛舌餅，鳳眼糕，大街小巷香味飄。<br>如果想吃古早味，請來鹿港走一遭。
+                        </div>
+                        <div class="tab-pane fade px-2" id="tab4" role="tabpanel">
+                          <h1 class="">回到鹿港</h1>
+                          我們的老家在鹿港，那裡的建築古色古香。每次回老家，我們都會到處逛一逛。&nbsp;&nbsp;<br><br>冬天，鹿港的風很大，九曲巷彎彎曲曲的，風一點也吹不進來，很溫暖。走在巷子裡，好像在玩捉迷藏一樣，一不留神，爸爸、媽媽就不見了。爸爸說，鹿港從前是一個商港，常有海盜出沒。媽媽也告訴我們，九曲巷除了防風以外，還可以防盜。你看！彎曲的巷子好像迷宮一樣，聽說不少海盜還真的曾經在裡面「迷路」呢！&nbsp;<br><br>逛完了九曲巷，我們再去參觀那口著名的「半邊井」。紅磚砌成的半邊井，一半在牆內，一半在牆外，好奇怪呵！奶奶說，由於鹿港人很有人情味，所以有些人把井挖在牆腳下，讓沒錢挖井的人，也能來打水喝。奶奶還說，她就是喝這一口井水長大的，我聽了很感動。&nbsp;<br><br>我喜歡回鹿港，因為那個地方，不但好玩，還很有人情味。
+                        </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="row">
+        </div>
+        <div class="row">
+          <div class="col-md-12 mt-5 mb-4">
+            <div class="card mx-4">
+              <div class="card-header bg-info">學習任務</div>
+              <div class="card-body mx-3" style="">
+                <blockquote class="blockquote mb-0"></blockquote>
+                <div class="row">
+                  <div class="col-md-12" style="">
+                    <div class="form-group">
+                      <label style="" id="question">question title</label><br><br><br>
+                      <span id="questionImg"><img src="assets/q01.jpg"></span><br><br>
+                      <span id="answerArea">
+                      <input type="radio" id="choiceA" name="answer" value="A"> <span id="choiceAText">(A) choice A</span><br>
+                      <input type="radio" id="choiceB" name="answer" value="B"> <span id="choiceBText">(B) choice B</span><br>
+                      <input type="radio" id="choiceC" name="answer" value="C"> <span id="choiceCText">(C) choice C</span><br><br>
+                      <button type="button" class="btn m-1 btn-info" data-target="#modal" data-toggle="modal" onclick="showHint(1);">提示</button>
+                      <button type="button" class="btn btn-primary" onclick="checkAnswer();">送出答案</button></span> 累計得分：<span id="score">0</span>分 <span id="hint"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Menu -->
     <!-- Carousel reviews -->
@@ -296,13 +379,13 @@
     <!-- Parallax section -->
     <!-- Footer -->
     <div class="text-center bg-dark pt-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 mt-3">
-                    <p class="text-center text-muted">© Copyright 2019 Aesophor Softworks (<a href="https://github.com/aesophor">github.com/aesophor</a>) - All rights reserved. </p>
-                </div>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mt-3">
+            <p class="text-center text-muted">© Copyright 2019 Aesophor Softworks (<a href="https://github.com/aesophor">github.com/aesophor</a>) - All rights reserved. </p>
+          </div>
         </div>
+      </div>
     </div>
     <!-- JavaScript dependencies -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -310,6 +393,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <!-- Script: Smooth scrolling between anchors in the same page -->
     <script src="js/smooth-scroll.js" style=""></script>
-</body>
-
+    <script>
+      showNextQuestion();
+    </script>
+  </body>
 </html>
